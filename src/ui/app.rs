@@ -392,13 +392,6 @@ impl App {
                 self.status = Status::Normal;
                 self.focus = None;
             },
-            (Status::Normal, Event::Key(KeyEvent { code: KeyCode::Enter, modifiers: KeyModifiers::NONE })) => {
-                if self.focus != Some(Uid::Local) {
-                    self.focus = Some(Uid::Local);
-                } else {
-                    self.interact_focus(event);
-                }
-            },
             (Status::Normal, Event::Key(KeyEvent { code: KeyCode::Char('q'), .. })) => {
                 self.p_popup = Some(PopupPanel::new_exit());
                 self.status = Status::Popup;

@@ -223,7 +223,7 @@ impl<H: Host> Ui for ExplorerPanel<H> {
         self.list.suit(Rect { y: r_table.y.saturating_add(1), height: r_table.height.saturating_sub(1), .. r_table });
         let mut rows = vec![];
 
-        const HEADER: [&'static str; 7] = [" ", "name", "size", "modified", "permissions", "type", "action", ];
+        const HEADER: [&'static str; 7] = ["", "name", "size", "modified", "permissions", "type", "action", ];
         let mut width: Vec<_> = HEADER.iter().map(|c| c.len() + 1).collect();
         let (rfs, select) = self.list.view();
         for (idx, rf) in rfs.iter().enumerate() {
@@ -410,6 +410,7 @@ impl RowFile {
         ]
     }
 }
+
 pub fn render_type<'n, S: FeStyles>(file_type: FileType, ext: Option<&'n String>, style: &S) -> Span<'n> {
     if file_type == FileType::File {
         if let Some(ext) = ext {
