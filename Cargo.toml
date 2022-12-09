@@ -16,3 +16,5 @@ chrono = "0.4.19"
 libc = "0.2.119"
 lazy_static = "1.4.0"
 clap = { features=["cargo"], version="3.1.6" }
+unicode-segmentation = "1.9.0"
+unicode-width = "0.1.9"

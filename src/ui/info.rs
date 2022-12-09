@@ -58,7 +58,7 @@ impl Ui for LogPanel {
         self.offset = self.offset.min(self.logs.len().saturating_sub(1));
         let mut height = 0;
         for record in self.logs.iter().skip(self.offset) {
-            let li = ListItem::new(Spans::from(vec![
+            let mut spans = vec![Spans::from(vec![
                 Span::styled("[", Style::default().add_modifier(Modifier::DIM)),
                 Span::from(&*record.timestamp),
                 Span::from(" "),
@@ -67,8 +67,10 @@ impl Ui for LogPanel {
                 Span::from(&*record.target),
                 Span::styled("]", Style::default().add_modifier(Modifier::DIM)),
                 Span::from(" "),
-                Span::styled(&record.msg, Style::default().fg(Color::White)),
-            ]));
+                // Span::styled(&record.msg, Style::default().fg(Color::White)),
+            ])];
+            spans.push(Spans::from(record.msg.clone()));
+            let li = ListItem::new(Text::from(spans));
             height += li.height();
             items.push(li);
             if height > rect.height as usize { break; }
